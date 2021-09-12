@@ -1,6 +1,8 @@
 // Assignment code here
-
-//click button to process a series of prompt for password generator
+var lc = "";
+var uc = "";
+var num = "";
+var special = "";
 
 //prompt for length of password -> 8-126
 var passwordLength = window.prompt("How long would you like your password to be?");
@@ -20,7 +22,8 @@ var lowerCase = window.confirm ("Would you like lower cases in your password?");
     window.alert("Your password will have no lowercases")
   }
   else {
-    window.alert("Your password will contain lowercases")
+    window.alert("Your password will contain lowercases");
+    var lc = "abcdefghijklmnopqrstuvwzyz";
   }
 
 //confirm upper case
@@ -29,65 +32,63 @@ var upperCase = window.confirm ("Would you like upper cases in your password?");
     window.alert("Your password will have no upper cases")
   }
   else {
-    window.alert("Your password will contain upper cases")
+    window.alert("Your password will contain upper cases");
+    var uc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
+
 //confirm number
+var number = window.confirm ("Would you like numbers in your password?");
+  if (!number) {
+    window.alert("Your password will have no numbers.")
+  }
+  else {
+    window.alert("Your password will contain numbers");
+    var num = "0123456789";
+  }
 
 //confirm special characters
+var specialCharacters = window.confirm ("Would you like special characters in your password?");
+  if (!upperCase) {
+    window.alert("Your password will have no special characters")
+  }
+  else {
+    window.alert("Your password will contain special characters");
+    var special = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  }
 
 //validate at laest one character type
-if (!lowerCase && !upperCase) {
+if (!lowerCase && !upperCase && !number && !specialCharacters) {
   window.alert("Please choose at least one character type.")
 }
 
-//generate password
-// function generatePassword() {
-//   var length = passwordLength,
-//       charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-//       retVal = "";
-//   for (var i = 0, n = charset.length; i < length; ++i) {
-//       retVal += charset.charAt(Math.floor(Math.random() * n));
-//   }
-//   window.prompt(retVal);
-// }
+// generate password
 
-// function generatePassword (length, characters) {
-//   var passwordText = "";
-//   for (var i = 0; i < length; i++) {
-//       password += characters.charAt(Math.floor(Math.random() * characters.length));
-//   }
-//   return passwordText;
-// };
-
-function generatePassword () {
-  var characters = [
-    {
-      lowerCase: "abcdefghijklmnopqrstuvwxyz",
-      upperCase:"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      //numericals:"0123456789",
-      //specialCharacters:"!@#$%^&*()[]{};':,./<>?"
-    }
-  ]
-  var password ="";
+function generatePassword() {
+ 
+  charSet = [lc, uc, num, special].filter(Boolean).join("");
+  var retVal = "";
   for (var i = 0; i < passwordLength; i++) {
-    var generate = characters.charAt[Math.floor(Math.random() * characters.passwordLength)];
-    password = generate;
+    //picks a character within charSet at index of random number
+    retVal += charSet.charAt(Math.floor(Math.random() * charSet.length));
+  }
+  return retVal;
 }
+alert(generatePassword());
 
 
 
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+//var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+//   passwordText.value = password;
 
-}
+// }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);}
+// // Add event listener to generate button
+// generateBtn.addEventListener("click", writePassword);
