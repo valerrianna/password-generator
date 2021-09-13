@@ -72,8 +72,6 @@ function generatePassword() {
   }
   return randomizePassword;
 }
-  // generate password
-
 
 //Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
